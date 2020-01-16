@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-dodge-game/static/css/main.d1b05096.chunk.css",
-    "main.js": "/react-dodge-game/static/js/main.59ea5e15.chunk.js",
-    "main.js.map": "/react-dodge-game/static/js/main.59ea5e15.chunk.js.map",
+    "main.js": "/react-dodge-game/static/js/main.c0ae62c7.chunk.js",
+    "main.js.map": "/react-dodge-game/static/js/main.c0ae62c7.chunk.js.map",
     "runtime-main.js": "/react-dodge-game/static/js/runtime-main.575e9bc3.js",
     "runtime-main.js.map": "/react-dodge-game/static/js/runtime-main.575e9bc3.js.map",
     "static/js/2.3dc63b86.chunk.js": "/react-dodge-game/static/js/2.3dc63b86.chunk.js",
     "static/js/2.3dc63b86.chunk.js.map": "/react-dodge-game/static/js/2.3dc63b86.chunk.js.map",
     "index.html": "/react-dodge-game/index.html",
-    "precache-manifest.2e5bda66bcf7eb6ea3f79de6e9190dc1.js": "/react-dodge-game/precache-manifest.2e5bda66bcf7eb6ea3f79de6e9190dc1.js",
+    "precache-manifest.05b9706f485fa78530b76d00815497e5.js": "/react-dodge-game/precache-manifest.05b9706f485fa78530b76d00815497e5.js",
     "service-worker.js": "/react-dodge-game/service-worker.js",
     "static/css/main.d1b05096.chunk.css.map": "/react-dodge-game/static/css/main.d1b05096.chunk.css.map",
     "static/js/2.3dc63b86.chunk.js.LICENSE": "/react-dodge-game/static/js/2.3dc63b86.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.575e9bc3.js",
     "static/js/2.3dc63b86.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.59ea5e15.chunk.js"
+    "static/js/main.c0ae62c7.chunk.js"
   ]
 }
