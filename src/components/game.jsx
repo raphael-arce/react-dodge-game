@@ -231,7 +231,7 @@ class Game extends Component {
     render() {
         return (
             <div style={{position: 'fixed', height: '100%', overflow: 'hidden', width: '100%'}}>
-                <h4>Use arrows to move</h4>
+                <h4>Use arrows or swipes to move</h4>
                 <canvas ref={this.canvasRef} width={maxSize} height={maxSize} style={{border: "1px solid black"}} />
                 <br/>
                 Score: {this.state.score*10} | Highscore: {this.state.highScore*10}
