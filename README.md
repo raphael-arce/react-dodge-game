@@ -1,5 +1,5 @@
 
-Demo: [raphael-arce.github.io/react-dodge-game](raphael-arce.github.io/react-dodge-game)
+Demo: [https://raphael-arce.github.io/react-dodge-game/](https://raphael-arce.github.io/react-dodge-game/)
 
 
 
