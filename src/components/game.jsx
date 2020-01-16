@@ -23,7 +23,8 @@ class Game extends Component {
             },
             bullets: [],
             score: 0,
-            highScore: 0
+            highScore: 0,
+            touchStart: undefined
         }
         this.draw = this.draw.bind(this)
         this.startGame = this.startGame.bind(this)
@@ -31,6 +32,9 @@ class Game extends Component {
 
     componentDidMount() {
         window.addEventListener('keydown', this.handleKeys.bind(this, true)); //add a listener for the keydown event
+        //window.addEventListener('touchmove', this.handleTouch.bind(this, false)) //add a listener 
+        window.addEventListener('touchstart', this.handleTouchStart.bind(this, false)) //add a listener 
+        window.addEventListener('touchend', this.handleTouchEnd.bind(this, false)) //add a listener 
         this.startGame(); //begin the game!
     }
 
@@ -79,9 +83,10 @@ class Game extends Component {
             context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height)
         }
     }
+    
     /**
      * Event handler for key down
-     * @param value 
+     * @param value
      * @param event 
      */
     handleKeys(value, event) {
@@ -89,6 +94,36 @@ class Game extends Component {
         if(event.keyCode === KEY.RIGHT) this.moveHorizontally(20)
         if(event.keyCode === KEY.UP) this.moveVertically(-20)
         if(event.keyCode === KEY.DOWN) this.moveVertically(20)
+    }
+
+    /**
+     * Event handler for touch start
+     * @param value
+     * @param event 
+     */
+    handleTouchStart(value, event) {
+        this.setState({touchStart: event.changedTouches[0]})
+    }
+    
+    /**
+     * Event handelr for touch end
+     * @param value
+     * @param event 
+     */
+    handleTouchEnd(value, event) {
+        if(this.state.touchStart !== undefined) {
+            let currentTouch = event.changedTouches[0]
+            let touchStart = this.state.touchStart
+            let deltaX = Math.abs(touchStart.clientX - currentTouch.clientX)
+            let deltaY = Math.abs(touchStart.clientY - currentTouch.clientY)
+            
+            if(deltaX > deltaY) {
+                touchStart.clientX > currentTouch.clientX ? this.moveHorizontally(-20) : this.moveHorizontally(20)
+            } else if (deltaX < deltaY) {
+                touchStart.clientY > currentTouch.clientY ? this.moveVertically(-20): this.moveVertically(20)
+            }
+            this.setState({touchStart: currentTouch})
+        }
     }
 
     /**
@@ -145,10 +180,10 @@ class Game extends Component {
         }
         if(bullet.axis === 'x') { //if the bullet moves along the x axis, use the y position of the player as fixed axis
             bullet.y = this.state.ship.y
-            bullet.direction === '+' ? bullet.x = 0 : bullet.x = maxSize //the starting position is depend from the direction
+            bullet.direction === '+' ? bullet.x = -20 : bullet.x = maxSize //the starting position is depend from the direction
         } else { //if the bullet moves along the y axis, use the x position of the player as fixed axis
             bullet.x = this.state.ship.x 
-            bullet.direction === '+' ? bullet.y = 0 : bullet.y = maxSize //the starting position is depend from the direction
+            bullet.direction === '+' ? bullet.y = -20 : bullet.y = maxSize //the starting position is depend from the direction
         }
         /**
          * Function to move to the bullet's next position
@@ -163,6 +198,7 @@ class Game extends Component {
      * Function to detect collisions
      */
     detectCollisions() { 
+        
         this.state.bullets.forEach(bullet => { //check for each bullet if the rectangle collides with the player's rectangle
             if(bullet.x < this.state.ship.x + this.state.ship.width &&
                 bullet.x + bullet.width > this.state.ship.x &&
@@ -194,7 +230,7 @@ class Game extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{position: 'fixed', height: '100%', overflow: 'hidden', width: '100%'}}>
                 <h4>Use arrows to move</h4>
                 <canvas ref={this.canvasRef} width={maxSize} height={maxSize} style={{border: "1px solid black"}} />
                 <br/>
